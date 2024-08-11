@@ -1,4 +1,4 @@
-@extends('user.layout')
+@extends('layouts.user-layout')
 @section('namepage','login')
 @section('maincontent')
 <div class="account-login section">

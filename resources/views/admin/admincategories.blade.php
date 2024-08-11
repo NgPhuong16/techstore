@@ -1,4 +1,5 @@
-@extends('admin.adminlayout')
+@extends('layouts.admin-layout')
+@section('title', Auth::user()->name)
 @section('admin-content')
 <div class="container-fluid">
     <div class="row mb-3">

@@ -1,4 +1,5 @@
-@extends('admin.adminlayout')
+@extends('layouts.admin-layout')
+@section('title', Auth::user()->name)
 @section('admin-content')
 <div class="container-fluid">
     <div class="row mb-3">
@@ -26,6 +27,18 @@
                 <div class="mb-3">
                   <label for="proName" class="form-label">Category's Name</label>
                   <input name="name" type="text" class="form-control" id="proName" value="{{$cate->name}}" placeholder="Nhập tên danh mục">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Category's Image</label>
+                    <img src="/images/categories/{{$cate->image}}" class="img-thumbnail mb-2" style="width: 200px" alt="{{$cate->name}}">
+                    <input name="image" class="form-control" type="file" id="formFile">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select name="status" class="form-select">
+                        <option value="0" {{$cate->status == 0 ? 'selected' : ''}}>Hide</option>
+                        <option value="1" {{$cate->status == 1 ? 'selected' : ''}}>Show</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>

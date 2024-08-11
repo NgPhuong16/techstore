@@ -16,7 +16,7 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-        <div class="row row-cols-2">
+        <div class="row row-cols-2 row-gap-2">
             
         <div class="col">
             <x-input-label for="name" :value="__('Name')" />
@@ -57,8 +57,8 @@
         </div>
     </div>
 
-        <div class="flex items-center gap-4 mt-3">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="flex items-center gap-4 mt-2">
+            <x-primary-button class="btn btn-outline-primary">{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

@@ -1,4 +1,4 @@
-@extends('user.layout')
+@extends('layouts.user-layout')
 @section('namepage','detail')
 @section('maincontent')
 <!-- Start Item Details -->

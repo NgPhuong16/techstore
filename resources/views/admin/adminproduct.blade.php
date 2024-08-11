@@ -1,16 +1,17 @@
-@extends('admin.adminlayout')
+@extends('layouts.admin-layout')
+@section('title', Auth::user()->name)
 @section('admin-content')
 <div class="container-fluid">
     <div class="row mb-3">
         <h4 class="col-4">Product</h4>
         <div class="col-4">
-            <a href="{{route('adminadd')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New Product</a>
+            <a href="{{route('adminadd')}}" class="btn btn-info"><i class="fa-solid fa-plus"></i> Add New Product</a>
         </div>
         <div class="col-4">
             <form class=" ms-5 d-flex" id="formSearch" action="{{route('admin.search')}}" method="POST">
                 @csrf
                 <input id="searchinput" name="keyword" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn" id="mybutton" type="submit"> Search</button>
+                <button class="btn btn-outline-info" id="mybutton" type="submit"> Search</button>
             </form>
         </div>
 

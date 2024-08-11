@@ -1,4 +1,4 @@
-@extends('user.layout')
+@extends('layouts.user-layout')
 @section('namepage',$title)
 @section('maincontent')
 <!-- Start Hero Area -->

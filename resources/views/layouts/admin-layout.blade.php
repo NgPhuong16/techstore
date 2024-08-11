@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/1c72e4dfe2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/adminstyle.css">
+
 </head>
 
 <body>
@@ -20,6 +21,7 @@
                     <a href="{{route('home')}}">Laravel</a>
                 </div>
                 <ul class="sidebar-nav">
+                    @if (Auth::user()->role == 0)
                     <li class="sidebar-header">
                         Admin Elements
                     </li>
@@ -29,12 +31,7 @@
                             Dashboard
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="profileadmin" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Profile
-                        </a>
-                    </li>
+            
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
@@ -73,39 +70,30 @@
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">User Account</a>
-                            </li>
-                            {{-- <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Register</a>
+                                <a href="#" class="sidebar-link">Staff Accounts</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Forgot Password</a>
-                            </li> --}}
+                                <a href="#" class="sidebar-link">Customer Accounts</a>
+                            </li>
                         </ul>
                     </li>
-                    {{-- <li class="sidebar-header">
-                        Multi Level Menu
+                    @elseif(Auth::user()->role == 1)
+                    <li class="sidebar-header">Staff Elements</li>
+                    @else
+                    <li class="sidebar-header">Customer Element</li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Profile
+                        </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
-                            Multi Dropdown
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-solid fa-list pe-2"></i>
+                            Orders
                         </a>
-                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link collapsed" data-bs-target="#level-1"
-                                    data-bs-toggle="collapse" aria-expanded="false">Level 1</a>
-                                <ul id="level-1" class="sidebar-dropdown list-unstyled collapse">
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Level 1.1</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Level 1.2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li> --}}
+                    </li>
+                    @endif
                 </ul>
             </div>
         </aside>
@@ -121,7 +109,7 @@
                                 <img src="/img/profile.jpg" class="avatar img-fluid rounded" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="{{route('profile.edit')}}" class="dropdown-item">Profile</a>
                                 <a href="#" class="dropdown-item">Setting</a>
                                 <form action="{{route('logout')}}" method="POST">
                                     @csrf

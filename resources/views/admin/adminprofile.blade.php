@@ -1,4 +1,5 @@
-@extends('admin.adminlayout')
+@extends('layouts.admin-layout')
+@section('title', Auth::user()->name)
 @section('admin-content')
 <div class="container-fluid">
     <x-slot name="header">
@@ -9,16 +10,19 @@
     <div class="my-3">
         @include('profile.partials.update-profile-information-form')
     </div>
-    <div class="my-3">
-        @include('profile.partials.update-password-form')
-    </div>
-    <div class="my-3">
-        @include('profile.partials.delete-user-form')
+    <div class="row">
+
+        <div class="my-3 col-6">
+            @include('profile.partials.update-password-form')
+        </div>
+        <div class="my-3 col-6">
+            @include('profile.partials.delete-user-form')
+        </div>
     </div>
     
                
                
-               
+          
 </div> 
 @endsection
             

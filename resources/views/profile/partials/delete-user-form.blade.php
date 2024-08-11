@@ -8,8 +8,56 @@
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
     </header>
+    <!-- Button trigger modal -->
+<x-danger-button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    {{ __('Delete Account') }}
+  </x-danger-button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete your account?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+            <div class="modal-body">
+                @csrf
+                @method('delete')
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                </p>
+    
+                <div class="mt-6">
+                    <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+    
+                    <x-text-input
+                        id="password"
+                        name="password"
+                        type="password"
+                        class="form-control"
+                        placeholder="{{ __('Password') }}"
+                    />
+    
+                    <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                </div>
+    
 
-    <x-danger-button
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <x-danger-button type="submit" class="btn btn-danger">{{ __('Delete Account') }}</x-danger-button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    <!-- End Button trigger modal -->
+
+
+    {{-- Breeze --}}
+    {{-- <x-danger-button class="btn btn-danger border-0"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
     >{{ __('Delete Account') }}</x-danger-button>
@@ -51,5 +99,5 @@
                 </x-danger-button>
             </div>
         </form>
-    </x-modal>
+    </x-modal> --}}
 </section>
