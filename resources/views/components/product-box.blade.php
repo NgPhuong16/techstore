@@ -18,7 +18,7 @@
         $maxProduct = $productsArray[count($productsArray) - 1]['price']; // Giá của phần tử cuối cùng là lớn nhất
     } else {
         // Nếu mảng rỗng, gán giá trị mặc định
-        $minProduct = $maxProduct = 0; // Hoặc bất kỳ giá trị nào phù hợp với logic của bạn
+        $minProduct = $maxProduct = 0; // Hoặc bất kỳ giá trị nào phù hợp với logic
     }
 @endphp
 
